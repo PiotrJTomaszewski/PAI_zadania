@@ -1,0 +1,33 @@
+﻿@{ 
+    if (IsPost)
+    {
+        if (Session["rules"] == null)
+        {
+            Session["rules"] = new List<string>();
+        }
+        string new_rule = Request["new_rule"];
+        if (!String.IsNullOrEmpty(new_rule))
+        {
+            ((List<string>)Session["rules"]).Add(new_rule);
+            Session["addRuleMsg"] = "Reguła pomyślnie dodana!";
+        }
+        else
+        {
+            Session["addRuleMsg"] = "Błąd, nieprawidłowa reguła!";
+        }
+    }
+    else
+    {
+        Session["addRuleMsg"] = "Błąd, nie podano reguły!";
+    }
+    Response.Redirect("Rules.cshtml");
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    Zlecenie jest przetwarzane
+</body>
+</html>
